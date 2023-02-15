@@ -162,5 +162,5 @@ cython_debug/
 .idea/
 
 
-converted.docx
+converted*.docx
 *verted.docx

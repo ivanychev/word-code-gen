@@ -3,7 +3,7 @@ import pathlib
 import subprocess
 import tempfile
 
-from wordcodegen.decorate import convert_code_to_markdown
+from wordcodegen.model import SourceCode
 
 REFERENCE_ENV_PATH = "REFERENCE_ENV_PATH"
 
@@ -22,7 +22,7 @@ def get_reference_docx_path() -> pathlib.Path:
 
 
 def convert_to_word(
-    source_code: str,
+    source_code: list[SourceCode],
     output_file_path: pathlib.Path,
     reference_docx_path: pathlib.Path | None,
 ):
@@ -33,7 +33,8 @@ def convert_to_word(
 
         md_file_path = dir_path / "code.md"
         with md_file_path.open("w") as f:
-            f.write(convert_code_to_markdown(source_code))
+            for s in source_code:
+                f.write(s.to_markdown())
 
         subprocess.call(
             [
