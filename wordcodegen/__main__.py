@@ -1,7 +1,6 @@
 import pathlib
 
 import click
-import pandoc
 
 from wordcodegen.codeloader import load_code_from_notebook, load_code_from_source_files
 from wordcodegen.convert import convert_to_word
@@ -80,7 +79,7 @@ def convert_ipynb(path: str, output_path: str, reference_docx_path: str | None):
 @click.option(
     "--file-extensions",
     help="File extensions to process.",
-    default=["py", "go"],
+    default=["py", "go", "c", "cc", "cpp", "cxx"],
     type=list[str],
 )
 def convert_source_files(

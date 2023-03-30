@@ -17,7 +17,9 @@ def load_code_from_notebook(notebook_path: pathlib.Path) -> SourceCode:
     code_cells = [cell for cell in notebook["cells"] if cell["cell_type"] == "code"]
 
     python_code = "\n".join(line for cell in code_cells for line in cell["source"])
-    return SourceCode(code=python_code, language=ProgrammingLanguages.PYTHON.value)
+    return SourceCode(
+        code=python_code, language=ProgrammingLanguages.PYTHON.value, path=notebook_path
+    )
 
 
 def load_code_from_source_files(paths: list[pathlib.Path]) -> list[SourceCode]:
@@ -32,4 +34,4 @@ def _load_code_from_source_files_gen(paths: list[pathlib.Path]) -> Iterable[Sour
             logger.info("Processing {}...", p)
             with p.open() as f:
                 buffer.write(f.read())
-        yield SourceCode(code=buffer.getvalue(), language=lang)
+        yield SourceCode(code=buffer.getvalue(), language=lang, path=p)
