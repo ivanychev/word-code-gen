@@ -92,15 +92,15 @@ def convert_source_files(
     reference_docx_path = (
         pathlib.Path(reference_docx_path) if reference_docx_path else None
     )
-    paths = None
+    paths = []
     if path:
-        paths = [pathlib.Path(p) for p in path]
-    elif folder:
-        paths = [
+        paths.extend(pathlib.Path(p) for p in path)
+    if folder:
+        paths.extend(
             p
             for f in folder
             for p in find_sources_in_folder(pathlib.Path(f), file_extensions)
-        ]
+        )
     code = load_code_from_source_files(paths)
     convert_to_word(
         code, pathlib.Path(output_path), reference_docx_path=reference_docx_path
