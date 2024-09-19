@@ -79,7 +79,7 @@ def convert_ipynb(path: str, output_path: str, reference_docx_path: str | None):
 @click.option(
     "--file-extensions",
     help="File extensions to process.",
-    default=["py", "go", "c", "cc", "cpp", "cxx"],
+    default=["py", "go", "c", "cc", "cpp", "cxx", "yaml", "yml", "html"],
     type=list[str],
 )
 def convert_source_files(
