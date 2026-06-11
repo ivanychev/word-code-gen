@@ -15,6 +15,9 @@ class ProgrammingLanguages(enum.Enum):
     GO = Language(markdown_format="go", comment_line_prefix="// ")
     YAML = Language(markdown_format="yaml", comment_line_prefix="# ")
     HTML = Language(markdown_format="html", comment_line_prefix="<!--", comment_line_suffix="-->")
+    JS = Language(markdown_format="javascript", comment_line_prefix="// ")
+    TS = Language(markdown_format="typescript", comment_line_prefix="// ")
+    CSS = Language(markdown_format="css", comment_line_prefix="/*", comment_line_suffix="*/")
     RUST = Language(markdown_format="rust", comment_line_prefix="// ")
     C = Language(markdown_format="c", comment_line_prefix="// ")
     CPP = Language(markdown_format="cpp", comment_line_prefix="// ")
@@ -37,6 +40,12 @@ class ProgrammingLanguages(enum.Enum):
                 return cls.YAML.value
             case ".html":
                 return cls.HTML.value
+            case ".js":
+                return cls.JS.value
+            case ".css":
+                return cls.CSS.value
+            case ".ts":
+                return cls.TS.value
             case ".rs":
                 return cls.RUST.value
             case _:
